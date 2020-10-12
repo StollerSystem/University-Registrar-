@@ -3,7 +3,7 @@
 }
 @model University.Models.Course
 
-<h4>Add a new task</h4>
+<h4>Add a new course</h4>
 
 @using (Html.BeginForm())
 {
@@ -11,8 +11,11 @@
     @Html.TextBoxFor(model => model.CourseName, 
       new {@required="required"})
 
-    @Html.Label("Select Student")
-    @Html.DropDownList("StudentId")
+    @Html.LabelFor(model => model.CourseNumber)
+    @Html.TextBoxFor(model => model.CourseNumber, 
+      new {@required="required"})
+
+   
 
     <input type="submit" value="Add new course" class="btn btn-default" />
 }

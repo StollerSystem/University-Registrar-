@@ -1,3 +1,30 @@
 @{
   Layout = "_Layout";
 }
+@model University.Models.Course
+<h2>course Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
+@if(@Model.Students.Count == 0)
+{
+  <p>This course does not belong to any Students</p>
+}
+else
+{
+  <h4>Student the course belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.Students)
+  {
+    <li>@join.Student.StudentName</li>
+    @using (Html.BeginForm("DeleteStudent", "courses"))
+    {
+      @Html.Hidden("joinId", @join.EnrollmentId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit course", "Edit", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Delete course", "Delete", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.CourseId })</p>

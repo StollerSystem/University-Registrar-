@@ -8,7 +8,7 @@
 
 <h2>Student Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>
+<h3> @Html.DisplayFor(model => model.StudentName)</h3>
 
 @if(@Model.Courses.Count == 0)
 {
@@ -24,6 +24,18 @@ else
   }
   </ul>
 }
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.StudentId)
+
+    @Html.Label("Select Course")
+    @Html.DropDownList("CourseId")
+
+    <input type="submit" value="Add" />
+}
+
+
 
 <p>@Html.ActionLink("Back to students", "Index")</p>
 <p>@Html.ActionLink("Edit student", "Edit", new { id = Model.StudentId })</p>

@@ -3,6 +3,7 @@ using University.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace University.Controllers
 {
@@ -40,7 +41,21 @@ namespace University.Controllers
           .Include(student => student.Courses)
           .ThenInclude(join => join.Course)
           .FirstOrDefault(student => student.StudentId == id);
+
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+
       return View(thisStudent);
+    }
+
+    [HttpPost]
+    public ActionResult Details(Student student, int CourseId)
+    {
+      if (CourseId != 0)
+      {
+        _db.Enrollment.Add(new Enrollment() { CourseId = CourseId, StudentId = student.StudentId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details");
     }
 
     public ActionResult Edit(int id)
