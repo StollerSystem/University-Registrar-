@@ -29,6 +29,15 @@ An app for a University registrar to keep track of students and courses.
 
 ### Specs
 
+Students
+
+- name and date of enrollment.
+  Courses
+- course name
+- course number (ex. HIST100)
+  Jointable
+- enrolment
+
 ## Setup/Installation Requirements
 
 - Download option

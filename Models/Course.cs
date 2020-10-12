@@ -1,0 +1,17 @@
+using System.Collections.Generic;
+
+namespace University.Models
+{
+  public class Course
+  {
+    public Course()
+    {
+      this.Items = new HashSet<Enrollment>();
+    }
+
+    public int CourseId { get; set; }
+    public string CourseName { get; set; }
+    public string CourseNumber { get; set; }
+    public virtual ICollection<Enrollment> Students { get; set; }
+  }
+}
