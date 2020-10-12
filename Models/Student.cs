@@ -6,7 +6,7 @@ namespace University.Models
   {
     public Student()
     {
-      this.Items = new HashSet<Enrollment>();
+      this.Courses = new HashSet<Enrollment>();
     }
 
     public int StudentId { get; set; }
