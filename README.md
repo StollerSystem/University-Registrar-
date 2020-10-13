@@ -19,6 +19,23 @@ __X list out all of the courses a student has taken, so that I can see if they h
 __ see how many students have not completed courses in any particular departments, so that I can tell the administration which departments need help.
 If you make it this far before the end of the day, think up and write some other user stories that a University registrar might have. -->
 
+```
+History Dept.
+Students:
+Danny Boy incomplete:
+
+- History
+- American History
+
+  Bob Barker Incomplete:
+
+- American History
+
+Courses Offered in This Department:
+History
+American History
+```
+
 # _University Registrar_
 
 #### _C# ASP.NET MCV Project for Epicodus, October 12th, 2020_

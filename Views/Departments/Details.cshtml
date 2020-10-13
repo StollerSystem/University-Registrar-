@@ -18,14 +18,20 @@ else
   <ul>
     @foreach (var student in Model.Students)
     {
-      <li>@student.StudentName
-        @* @student.Courses.Count *@
+      <li>@Html.ActionLink($"{student.StudentName}", "Details", "Students", new { id = student.StudentId})
         @foreach (Enrollment enroll in student.Courses)
         {
-          @* <p>test</p> *@
-          @if (enroll.Complete == true)
+          @if (enroll.Complete == false)
           {
-            <span>Complete!</span>
+            foreach (var course in Model.Courses)
+            {
+              <ul>
+                @if (enroll.CourseId == course.CourseId)
+                {
+                  <li>Incomplete: @course.CourseName</li>
+                }
+              </ul>
+            }
           }
         }
       </li>
