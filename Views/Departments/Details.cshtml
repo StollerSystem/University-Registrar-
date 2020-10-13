@@ -1,7 +1,9 @@
 @{
   Layout = "_Layout";
 }
+@using University.Models;
 @model University.Models.Department
+
 <h2>Department Details</h2>
 <hr />
 <h3>@Html.DisplayFor(model => model.DepartmentName)</h3>
@@ -16,16 +18,20 @@ else
   <ul>
     @foreach (var student in Model.Students)
     {
-      <li>@student.StudentName</li>
-      @* @using (Html.BeginForm("DeleteStudent", "courses"))
+      <li>@student.StudentName
+        @* @student.Courses.Count *@
+        @foreach (Enrollment enroll in student.Courses)
         {
-        @Html.Hidden("joinId", @join.EnrollmentId)
-        <input type="submit" value="Remove"/>
-        } *@
+          @* <p>test</p> *@
+          @if (enroll.Complete == true)
+          {
+            <span>Complete!</span>
+          }
+        }
+      </li>
     }
   </ul>
 }
-
 @if (@Model.Courses.Count == 0)
 {
   <p>This department does not have any courses.</p>
@@ -37,11 +43,6 @@ else
     @foreach (var course in Model.Courses)
     {
       <li>@course.CourseName</li>
-      @* @using (Html.BeginForm("DeleteStudent", "courses"))
-        {
-        @Html.Hidden("joinId", @join.EnrollmentId)
-        <input type="submit" value="Remove"/>
-        } *@
     }
   </ul>
 }

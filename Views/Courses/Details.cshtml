@@ -5,23 +5,42 @@
 <h2>Course Details</h2>
 <hr />
 <h3>@Html.DisplayFor(model => model.CourseName)</h3>
-@if(@Model.Students.Count == 0)
+@if (@Model.Students.Count == 0)
 {
   <p>This course does not have any Students enrolled.</p>
 }
 else
 {
   <h4>Students:</h4>
+  <h5>Incomplete:</h5>
   <ul>
-  @foreach(var join in Model.Students)
-  {
-    <li>@join.Student.StudentName</li>
-    @using (Html.BeginForm("DeleteStudent", "courses"))
+    @foreach (var join in Model.Students)
     {
-      @Html.Hidden("joinId", @join.EnrollmentId)
-      <input type="submit" value="Remove"/>
+      if (!join.Complete)
+      {
+        <li>@join.Student.StudentName</li>
+        @using (Html.BeginForm("DeleteStudent", "courses"))
+        {
+          @Html.Hidden("joinId", @join.EnrollmentId)
+          <input type="submit" value="Remove" />
+        }
+      }
     }
-  }
+  </ul>
+  <h5>Complete:</h5>
+  <ul>
+    @foreach (var join in Model.Students)
+    {
+      if (join.Complete)
+      {
+        <li>@join.Student.StudentName</li>
+        @using (Html.BeginForm("DeleteStudent", "courses"))
+        {
+          @Html.Hidden("joinId", @join.EnrollmentId)
+          <input type="submit" value="Remove" />
+        }
+      }
+    }
   </ul>
 }
 <button>@Html.ActionLink("Back to list", "Index")</button>
