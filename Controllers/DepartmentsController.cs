@@ -39,7 +39,6 @@ namespace University.Controllers
       .Include(department => department.Courses)
       .Include(department => department.Students)
       .ThenInclude(student => student.Courses)
-      // .Include(department => department.Complete)
       .FirstOrDefault(department => department.DepartmentId == id);
       return View(thisDepartment);
     }

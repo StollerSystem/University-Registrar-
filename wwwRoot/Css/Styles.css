@@ -1,4 +1,21 @@
 body {
   background-color: rgb(217, 217, 234);
   color: black;
+  font-weight: 600;
 }
+
+.mainBox {
+  background-color: antiquewhite;
+  margin: auto;
+  padding: 10px;
+  border: solid black;
+  border-width: 1px;
+}
+
+.jumbotron {
+  background-color: antiquewhite;
+}
+
+/* #myNavbar {
+ 
+} */

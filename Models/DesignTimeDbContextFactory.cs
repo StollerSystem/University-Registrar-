@@ -7,7 +7,6 @@ namespace University.Models
 {
   public class UniversityContextFactory : IDesignTimeDbContextFactory<UniversityContext>
   {
-
     UniversityContext IDesignTimeDbContextFactory<UniversityContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()

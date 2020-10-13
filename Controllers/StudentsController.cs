@@ -32,24 +32,17 @@ namespace University.Controllers
     public ActionResult Create(Student student, int StudentId)
     {
       _db.Students.Add(student);
-      // if (StudentId != 0)
-      // {
-      //   _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
-      // }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      // System.Console.WriteLine("STUDENT ID: {0}", id);
       var thisStudent = _db.Students
           .Include(student => student.Courses)
           .ThenInclude(join => join.Course)
           .FirstOrDefault(student => student.StudentId == id);
-
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
-
       return View(thisStudent);
     }
 
@@ -95,7 +88,6 @@ namespace University.Controllers
     [HttpPost]
     public ActionResult DeleteCourse(int joinId, int studentId)
     {
-      // System.Console.WriteLine(" Delete Course STUDENT ID: {0}", studentId);
       var joinEntry = _db.Enrollment.FirstOrDefault(entry => entry.EnrollmentId == joinId);
       _db.Enrollment.Remove(joinEntry);
       _db.SaveChanges();
@@ -105,12 +97,11 @@ namespace University.Controllers
     [HttpPost]
     public ActionResult CompleteCourse(int joinId, int studentId)
     {
-      // System.Console.WriteLine(" Delete Course STUDENT ID: {0}", studentId);
+
       var joinEntry = _db.Enrollment.FirstOrDefault(entry => entry.EnrollmentId == joinId);
       joinEntry.Complete = true;
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = studentId });
+      return RedirectToAction("Details", new { id = studentId });// new { id = studentId } anon object to match the needs of details. 
     }
   }
 }
-// new { id = studentId } anon object to match the needs of details. 

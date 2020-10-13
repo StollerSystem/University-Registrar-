@@ -4,11 +4,9 @@
 @model University.Models.Course
 
 <h4>Edit course</h4>
-
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.CourseId)
-
   @Html.LabelFor(model => model.CourseName)
   @Html.TextBoxFor(model => model.CourseName,
 new {@required="required"})
@@ -17,7 +15,6 @@ new {@required="required"})
   @Html.LabelFor(model => model.CourseNumber)
   @Html.TextBoxFor(model => model.CourseNumber,
 new {@required="required"})
-
   <input type="submit" value="save" class="btn btn-default" />
 }
 <button>@Html.ActionLink("Show all courses", "Index")</button>

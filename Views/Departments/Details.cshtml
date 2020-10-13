@@ -14,11 +14,13 @@
 }
 else
 {
-  <h4>Students:</h4>
+  <h4>Majors:</h4>
   <ul>
     @foreach (var student in Model.Students)
     {
       <li>@Html.ActionLink($"{student.StudentName}", "Details", "Students", new { id = student.StudentId})
+
+
         @foreach (Enrollment enroll in student.Courses)
         {
           @if (enroll.Complete == false)
@@ -28,7 +30,7 @@ else
               <ul>
                 @if (enroll.CourseId == course.CourseId)
                 {
-                  <li>Incomplete: @course.CourseName</li>
+                  <li>Incomplete in this dept. : @course.CourseName</li>
                 }
               </ul>
             }
@@ -52,7 +54,6 @@ else
     }
   </ul>
 }
-
 <button>@Html.ActionLink("Back to list", "Index")</button>
 <button>@Html.ActionLink("Edit department", "Edit", new { id = Model.DepartmentId })</button>
 <button>@Html.ActionLink("Delete course", "Delete", new { id = Model.DepartmentId })</button>
