@@ -37,6 +37,7 @@ namespace University.Controllers
 
     public ActionResult Details(int id)
     {
+      // System.Console.WriteLine("STUDENT ID: {0}", id);
       var thisStudent = _db.Students
           .Include(student => student.Courses)
           .ThenInclude(join => join.Course)
@@ -48,7 +49,7 @@ namespace University.Controllers
     }
 
     [HttpPost]
-    public ActionResult Details(Student student, int CourseId)
+    public ActionResult Details(Student student, int CourseId) //ADD cOURSE
     {
       if (CourseId != 0)
       {
@@ -77,7 +78,6 @@ namespace University.Controllers
       var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
-
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -86,5 +86,15 @@ namespace University.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    [HttpPost]
+    public ActionResult DeleteCourse(int joinId, int studentId)
+    {
+      // System.Console.WriteLine(" Delete Course STUDENT ID: {0}", studentId);
+      var joinEntry = _db.Enrollment.FirstOrDefault(entry => entry.EnrollmentId == joinId);
+      _db.Enrollment.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = studentId });
+    }
   }
 }
+// new { id = studentId } anon object to match the needs of details. 

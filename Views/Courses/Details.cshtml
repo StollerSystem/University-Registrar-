@@ -2,16 +2,16 @@
   Layout = "_Layout";
 }
 @model University.Models.Course
-<h2>course Details</h2>
+<h2>Course Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
+<h3>@Html.DisplayFor(model => model.CourseName)</h3>
 @if(@Model.Students.Count == 0)
 {
-  <p>This course does not belong to any Students</p>
+  <p>This course does not have any Students enrolled.</p>
 }
 else
 {
-  <h4>Student the course belongs to:</h4>
+  <h4>Students:</h4>
   <ul>
   @foreach(var join in Model.Students)
   {
@@ -19,12 +19,12 @@ else
     @using (Html.BeginForm("DeleteStudent", "courses"))
     {
       @Html.Hidden("joinId", @join.EnrollmentId)
-      <input type="submit" value="Delete"/>
+      <input type="submit" value="Remove"/>
     }
   }
   </ul>
 }
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit course", "Edit", new { id = Model.CourseId })</p>
-<p>@Html.ActionLink("Delete course", "Delete", new { id = Model.CourseId })</p>
-<p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.CourseId })</p>
+<button>@Html.ActionLink("Back to list", "Index")</button>
+<button>@Html.ActionLink("Edit course", "Edit", new { id = Model.CourseId })</button>
+<button>@Html.ActionLink("Delete course", "Delete", new { id = Model.CourseId })</button>
+<button>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.CourseId })</button>
