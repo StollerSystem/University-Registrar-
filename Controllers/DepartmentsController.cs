@@ -35,7 +35,7 @@ namespace University.Controllers
     }
     public ActionResult Details(int id)
     {
-      Department thisDepartment = _db.Department.Include(department => department.Courses).FirstOrDefault(department => department.DepartmentId == id);
+      Department thisDepartment = _db.Department.Include(department => department.Courses).Include(department => department.Students).FirstOrDefault(department => department.DepartmentId == id);
       return View(thisDepartment);
     }
 

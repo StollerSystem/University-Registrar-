@@ -10,15 +10,17 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.StudentId)
+  @Html.HiddenFor(model => model.StudentId)
 
-    @Html.LabelFor(model => model.StudentName)
-    @Html.TextBoxFor(model => model.StudentName, 
-      new {@required="required"})
-    @Html.Label("Date enrolled")
-    @Html.TextBoxFor(model => model.DateofEnroll, 
-      new {@required="required", type="date"})
+  @Html.LabelFor(model => model.StudentName)
+  @Html.TextBoxFor(model => model.StudentName,
+new {@required="required"})
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
+  @Html.Label("Date enrolled")
+  @Html.TextBoxFor(model => model.DateofEnroll,
+new {@required="required", type="date"})
 
-    <input type="submit" value="Save" />
+  <input type="submit" value="Save" />
 }
 <button>@Html.ActionLink("Back to students", "Index")</button>

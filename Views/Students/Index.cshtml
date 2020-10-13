@@ -13,7 +13,7 @@
 
 @foreach (Student student in Model)
 {
-  <li>@Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId}) || Enrolled : @student.DateofEnroll</li>
+  <li>@Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId}) || Enrolled : @student.DateofEnroll || Dept. @student.Department.DepartmentName </li>
 }
 
 <button>@Html.ActionLink("Add new student", "Create")</button>

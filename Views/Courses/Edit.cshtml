@@ -12,6 +12,8 @@
   @Html.LabelFor(model => model.CourseName)
   @Html.TextBoxFor(model => model.CourseName,
 new {@required="required"})
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
   @Html.LabelFor(model => model.CourseNumber)
   @Html.TextBoxFor(model => model.CourseNumber,
 new {@required="required"})

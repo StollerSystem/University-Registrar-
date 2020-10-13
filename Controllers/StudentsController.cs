@@ -18,19 +18,24 @@ namespace University.Controllers
 
     public ActionResult Index()
     {
-      List<Student> model = _db.Students.ToList();
+      List<Student> model = _db.Students.Include(student => student.Department).ToList();
       return View(model);
     }
 
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Department, "DepartmentId", "DepartmentName");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Student student)
+    public ActionResult Create(Student student, int StudentId)
     {
       _db.Students.Add(student);
+      // if (StudentId != 0)
+      // {
+      //   _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
+      // }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -62,6 +67,7 @@ namespace University.Controllers
     public ActionResult Edit(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      ViewBag.DepartmentId = new SelectList(_db.Department, "DepartmentId", "DepartmentName");
       return View(thisStudent);
     }
 

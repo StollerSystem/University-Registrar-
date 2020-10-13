@@ -49,6 +49,7 @@ namespace University.Controllers
 
     public ActionResult Edit(int id)
     {
+      ViewBag.DepartmentId = new SelectList(_db.Department, "DepartmentId", "DepartmentName");
       var thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
       // ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View(thisCourse);
