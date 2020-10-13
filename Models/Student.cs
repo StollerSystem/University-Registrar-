@@ -17,6 +17,5 @@ namespace University.Models
     public virtual Department Department { get; set; }
     public virtual ICollection<Enrollment> Courses { get; set; }
 
-
   }
 }

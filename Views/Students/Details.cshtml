@@ -17,21 +17,21 @@ else
   <ul>
     @foreach (var join in Model.Courses)
     {
-      @using (Html.BeginForm("DeleteCourse", "Students"))
+      if (!join.Complete)
       {
-        @Html.Hidden("studentId", @Model.StudentId)
-        @Html.Hidden("joinId", @join.EnrollmentId)
-        <li>@join.Course.CourseName | @join.Course.CourseNumber </li>
+        @using (Html.BeginForm("DeleteCourse", "Students"))
+        {
+          @Html.Hidden("studentId", @Model.StudentId)
+          @Html.Hidden("joinId", @join.EnrollmentId)
+          <li>@join.Course.CourseName | @join.Course.CourseNumber </li>
+        }
+        @using (Html.BeginForm("CompleteCourse", "Students"))
+        {
+          @Html.Hidden("studentId", @Model.StudentId)
+          @Html.Hidden("joinId", @join.EnrollmentId)
+          <input type="submit" value="Complete" /><input type="submit" value="Remove" />
+        }
       }
-      @using (Html.BeginForm("CompleteCourse", "Students"))
-      {
-        @Html.Hidden("studentId", @Model.StudentId)
-        @Html.Hidden("joinId", @join.EnrollmentId)
-        <input type="submit" value="Complete" /><input type="submit" value="Remove" />
-      }
-
-
-
     }
   </ul>
 }
@@ -42,6 +42,20 @@ else
   @Html.DropDownList("CourseId")
   <input type="submit" value="Add" />
 }
+
+<h4>Completed Courses</h4>
+@foreach (var join in Model.Courses)
+{
+  <ul>
+    @if (join.Complete)
+    {
+      <li>@join.Course.CourseName | @join.Course.CourseNumber </li>
+    }
+  </ul>
+}
+
+
+
 <button>@Html.ActionLink("Back to students", "Index")</button>
 <button>@Html.ActionLink("Edit student", "Edit", new { id = Model.StudentId })</button>
 <button>@Html.ActionLink("Delete student", "Delete", new { id = Model.StudentId })</button>
