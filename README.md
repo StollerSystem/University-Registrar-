@@ -12,10 +12,11 @@ If you make it this far, great job! If you have time, work on these other user s
 Extended things
 __ be able to create departments. A student can be assigned to a department when they declare their major and a course can be assigned to a department when it is created.
 __ be able to list out all of the courses or all of the students in a particular department, so that I can inform the counselors which departments need more students and which need more courses.
+
+
 __ change a student's file to show that they have completed a course, so that I can see if they need to take the course again.
 __ list out all of the courses a student has taken, so that I can see if they have met their degree requirements.
 __ see how many students have not completed courses in any particular departments, so that I can tell the administration which departments need help.
-__ …
 If you make it this far before the end of the day, think up and write some other user stories that a University registrar might have. -->
 
 # _University Registrar_

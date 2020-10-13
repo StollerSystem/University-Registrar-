@@ -101,6 +101,16 @@ namespace University.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = studentId });
     }
+
+    [HttpPost]
+    public ActionResult CompleteCourse(int joinId, int studentId)
+    {
+      // System.Console.WriteLine(" Delete Course STUDENT ID: {0}", studentId);
+      var joinEntry = _db.Enrollment.FirstOrDefault(entry => entry.EnrollmentId == joinId);
+      joinEntry.Complete = true;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = studentId });
+    }
   }
 }
 // new { id = studentId } anon object to match the needs of details. 

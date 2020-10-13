@@ -21,8 +21,17 @@ else
       {
         @Html.Hidden("studentId", @Model.StudentId)
         @Html.Hidden("joinId", @join.EnrollmentId)
-        <li>@join.Course.CourseName | @join.Course.CourseNumber <input type="submit" value="Remove" /></li>
+        <li>@join.Course.CourseName | @join.Course.CourseNumber </li>
       }
+      @using (Html.BeginForm("CompleteCourse", "Students"))
+      {
+        @Html.Hidden("studentId", @Model.StudentId)
+        @Html.Hidden("joinId", @join.EnrollmentId)
+        <input type="submit" value="Complete" /><input type="submit" value="Remove" />
+      }
+
+
+
     }
   </ul>
 }
