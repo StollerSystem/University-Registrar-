@@ -23,18 +23,18 @@ namespace University.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      ViewBag.DepartmentId = new SelectList(_db.Department, "DepartmentId", "DepartmentName");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Course course, int StudentId)
+    public ActionResult Create(Course course)
     {
       _db.Courses.Add(course);
-      if (StudentId != 0)
-      {
-        _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
-      }
+      // if (StudentId != 0)
+      // {
+      //   _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
+      // }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -50,17 +50,17 @@ namespace University.Controllers
     public ActionResult Edit(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      // ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View(thisCourse);
     }
 
     [HttpPost]
-    public ActionResult Edit(Course course, int StudentId)
+    public ActionResult Edit(Course course)
     {
-      if (StudentId != 0)
-      {
-        _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
-      }
+      // if (StudentId != 0)
+      // {
+      //   _db.Enrollment.Add(new Enrollment() { StudentId = StudentId, CourseId = course.CourseId });
+      // }
       _db.Entry(course).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");

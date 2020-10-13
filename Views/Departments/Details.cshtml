@@ -1,0 +1,51 @@
+@{
+  Layout = "_Layout";
+}
+@model University.Models.Department
+<h2>Department Details</h2>
+<hr />
+<h3>@Html.DisplayFor(model => model.DepartmentName)</h3>
+
+@if (@Model.Students.Count == 0)
+{
+  <p>This department does not have any Students.</p>
+}
+else
+{
+  <h4>Students:</h4>
+  <ul>
+    @foreach (var student in Model.Students)
+    {
+      <li>@student.StudentName</li>
+      @* @using (Html.BeginForm("DeleteStudent", "courses"))
+        {
+        @Html.Hidden("joinId", @join.EnrollmentId)
+        <input type="submit" value="Remove"/>
+        } *@
+    }
+  </ul>
+}
+
+@if (@Model.Courses.Count == 0)
+{
+  <p>This department does not have any courses.</p>
+}
+else
+{
+  <h4>Courses:</h4>
+  <ul>
+    @foreach (var course in Model.Courses)
+    {
+      <li>@course.CourseName</li>
+      @* @using (Html.BeginForm("DeleteStudent", "courses"))
+        {
+        @Html.Hidden("joinId", @join.EnrollmentId)
+        <input type="submit" value="Remove"/>
+        } *@
+    }
+  </ul>
+}
+
+<button>@Html.ActionLink("Back to list", "Index")</button>
+<button>@Html.ActionLink("Edit department", "Edit", new { id = Model.DepartmentId })</button>
+<button>@Html.ActionLink("Delete course", "Delete", new { id = Model.DepartmentId })</button>
